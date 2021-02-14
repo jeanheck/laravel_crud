@@ -1,0 +1,21 @@
+.delete-icon {
+  font-size: 1.5rem; 
+  color: red;
+}
+.edit-icon {
+  font-size: 1.5rem; 
+  color: rgb(24, 125, 207);
+}
+.create-icon {
+  font-size: 2rem; 
+  color: rgb(14, 165, 14);
+}
+.default-icon{
+  font-size: 1.5rem; 
+  color: rgb(95, 95, 95);
+}
+
+svg.w-5.h-5{
+  width: 25px;
+  height: 25px;
+}

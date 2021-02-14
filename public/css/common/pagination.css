@@ -1,0 +1,6 @@
+nav[role=navigation] {
+  font-weight: bold;
+}
+nav[role=navigation] div {
+  padding-top: 5px;
+}
