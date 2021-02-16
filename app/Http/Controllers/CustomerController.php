@@ -29,7 +29,8 @@ class CustomerController extends Controller
         }
 
         $customers = $customers->paginate(5);
-        return view('customer/index', compact('customers', 'filteredName'));
+        $active = "customers";
+        return view('customer/index', compact('customers', 'filteredName', 'active'));
     }
 
     /**
@@ -39,7 +40,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer/create');
+        $active = 'customers';
+
+        return view('customer/create', compact('active'));
     }
 
     /**
@@ -55,7 +58,7 @@ class CustomerController extends Controller
 		]);
 
 		if($newCustomer){
-			return redirect('customers');
+			return redirect('customers')->with('success','Item created successfully!');
 		}
     }
 
@@ -79,7 +82,9 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customer = $this->customer->find($id);
-        return view('customer/edit', compact('customer'));
+        $active = "customers";
+
+        return view('customer/edit', compact('customer', 'active'));
     }
 
     /**
@@ -92,7 +97,7 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $editCustomer = $this->customer->where(['id'=>$id])->update([
-            'name'=>$request->name
+            'name'=>$request->EditCustomerName
 		]);
 
         if($editCustomer){

@@ -25,14 +25,14 @@
         
           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{url("orders/")}}">Orders</a>
+              <li class="nav-item">
+                <a class="nav-link {{$active == 'orders' ? 'active' : ''}}" href="{{url("orders/")}}" >Orders</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url("products/")}}">Products</a>
+                <a class="nav-link {{$active == 'products' ? 'active' : ''}}" href="{{url("products/")}}">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url("customers/")}}">Customers</a>
+                <a class="nav-link {{$active == 'customers' ? 'active' : ''}}" href="{{url("customers/")}}">Customers</a>
               </li>
             </ul>
           </div>
@@ -40,6 +40,7 @@
       </nav>
     </header>
     <main class="container">
+      @include('flash-message')
       @yield('content')
     </main>
   </body>

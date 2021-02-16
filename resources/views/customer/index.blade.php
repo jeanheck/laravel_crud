@@ -38,12 +38,6 @@
             <a href="{{url("customers/$customer->id")}}" class="btn btn-outline-dark jsshow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="bi-search default-icon"></i>
             </a>
-            <a href="{{url("customers/$customer->id/edit")}}" class="btn btn-outline-dark" role="button">
-              <i class="bi-pencil edit-icon"></i>
-            </a>
-            <a href="{{url("customers/$customer->id")}}" class="btn btn-outline-dark jsdel" role="button">
-              <i class="bi-trash delete-icon"></i>
-            </a>
           </td>
         </tr>
       @endforeach
@@ -58,25 +52,26 @@
           <h5 class="modal-title" id="exampleModalLabel">Show customer data</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col" id="modalCustomerId">
-              {{$customer->id}}
+
+        <form name="EditCustomerForm" id="EditCustomerForm" method="POST">
+          @method('PUT')
+          @csrf
+
+          <div class="modal-body">
+            <div class="row">
+              <input class="form-control" type="text" name="EditCustomerName" id="EditCustomerName" placeholder="Customer name"/>
             </div>
-            <div class="col" id="modalCustomerName">
-              {{$customer->name}}
+          </div>
+          <div class="modal-footer">
+            <div class="text-end">
+              <a class="btn btn-danger jsdel" role="button" name="DeleteCustomer" id="DeleteCustomer">Delete</a>
+            </div>
+            <div class="text-right">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <div class="text-end">
-            <button type="button" class="btn btn-danger">Delete</button>
-          </div>
-          <div class="text-right">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

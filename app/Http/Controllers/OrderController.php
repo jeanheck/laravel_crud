@@ -29,7 +29,8 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = $this->order->paginate(5);
-        return view('order/index', compact('orders'));
+        $active = "orders";
+        return view('order/index', compact('orders', 'active'));
     }
 
     /**
@@ -41,7 +42,8 @@ class OrderController extends Controller
     {
         $customers = $this->customer->all();
         $products = $this->product->all();
-        return view('order/create', compact('customers', 'products'));
+        $active = 'orders';
+        return view('order/create', compact('customers', 'products', 'active'));
     }
 
     /**
@@ -96,7 +98,9 @@ class OrderController extends Controller
         $order = $this->order->find($id);
         $customers = $this->customer->all();
         $products = $this->product->all();
-        return view('order/edit', compact('order', 'customers', 'products'));
+        $active = "orders";
+
+        return view('order/edit', compact('order', 'customers', 'products', 'active'));
     }
 
     /**

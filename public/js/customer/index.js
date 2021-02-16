@@ -8,15 +8,16 @@
     let token = doc.getElementsByName('_token')[0].value;
 
     if(confirm('deseja mesmo apagar?')){
-      let ajax = new XMLHttpRequest();
-      ajax.open("DELETE", event.target.parentNode.href);
-      ajax.setRequestHeader('X-CSRF-TOKEN', token);
-      ajax.onreadystatechange=function(){
-        if(ajax.readyState === 4 && ajax.status === 200){
+      $.ajax({
+        url: event.target.href,
+        type: 'DELETE',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-CSRF-TOKEN", token);
+        },
+        success: function(response) {
           win.location.href = "customers";
         }
-      }
-      ajax.send()
+     });
     }else{
       return false;
     }
@@ -27,12 +28,11 @@
 
     let token = doc.getElementsByName('_token')[0].value;
 
-    console.log('event.target.parentNode.href > ', event.target.parentNode.href);
-
     $.get(event.target.parentNode.href, {'X-CSRF-TOKEN': token})
     .done(function(data) {
-      $("#modalCustomerId").html(`ID: ${data.id}`);
-      $("#modalCustomerName").html(`Name: ${data.name}`);
+      $("#EditCustomerForm").attr("action", `customers/${data.id}`);
+      $("#DeleteCustomer").attr("href", `customers/${data.id}`);
+      $("#EditCustomerName").val(data.name);
     });
   }
 

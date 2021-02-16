@@ -29,8 +29,9 @@ class ProductController extends Controller
         }
 
         $products = $products->paginate(5);
+        $active = "products";
 
-        return view('product/index', compact('products'));
+        return view('product/index', compact('products', 'active'));
     }
 
     /**
@@ -82,7 +83,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->product->find($id);
-        return view('product/edit', compact('product'));
+        $active = "products";
+
+        return view('product/edit', compact('product', 'active'));
     }
 
     /**
