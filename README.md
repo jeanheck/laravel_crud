@@ -8,4 +8,4 @@ Xamp, or Wamp, or something like that;
 Composer;
 Laravel;
 
-Type "php artisan serve" and go to localhost:8000 to see the project.
+Type "php artisan serve" at terminal and go to localhost:8000 to see the project.
